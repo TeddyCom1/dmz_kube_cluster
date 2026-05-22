@@ -24,7 +24,7 @@ resource "talos_machine_secrets" "this" {}
 # ─── Control plane nodes ──────────────────────────────────────────────────────
 
 module "controlplane" {
-  source = "../kube-talos-node-module"
+  source = "https://github.com/TeddyCom1/talos-proxmox-module"
 
   node_type        = "controlplane"
   cluster_name     = var.cluster_name
@@ -36,8 +36,6 @@ module "controlplane" {
 
   nodes = {
     cp0 = { name = "dmz-cp-0", target_node = "pve0", ip_address = "192.168.10.10" }
-    cp1 = { name = "dmz-cp-1", target_node = "pve1", ip_address = "192.168.10.11" }
-    cp2 = { name = "dmz-cp-2", target_node = "pve2", ip_address = "192.168.10.12" }
   }
 
   cores     = 2
@@ -56,7 +54,7 @@ resource "talos_bootstrap" "this" {
 # ─── Worker nodes ─────────────────────────────────────────────────────────────
 
 module "workers" {
-  source = "../kube-talos-node-module"
+  source = "https://github.com/TeddyCom1/talos-proxmox-module"
 
   node_type        = "worker"
   cluster_name     = var.cluster_name
@@ -68,12 +66,11 @@ module "workers" {
 
   nodes = {
     w0 = { name = "dmz-worker-0", target_node = "pve0", ip_address = "192.168.10.20" }
-    w1 = { name = "dmz-worker-1", target_node = "pve1", ip_address = "192.168.10.21" }
   }
 
-  cores     = 4
-  memory    = 8192
-  disk_size = 50
+  cores     = 2
+  memory    = 4096
+  disk_size = 20
 
   depends_on = [talos_bootstrap.this]
 }
