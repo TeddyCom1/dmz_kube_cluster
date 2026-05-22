@@ -26,3 +26,5 @@ override.tf.json
 # Crash log
 crash.log
 crash.*.log
+
+.env
