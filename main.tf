@@ -9,6 +9,13 @@ terraform {
       version = "~> 0.7"
     }
   }
+  backend "http" {
+    address        = "https://git.home.mongernet.com/api/packages/Teddycom1/terraform/state/dmz-kube-cluster"
+    lock_address   = "https://git.home.mongernet.com/api/packages/Teddycom1/terraform/state/dmz-kube-cluster/lock"
+    unlock_address = "https://git.home.mongernet.com/api/packages/Teddycom1/terraform/state/dmz-kube-cluster/lock"
+    lock_method    = "POST"
+    unlock_method  = "DELETE"
+  }
   required_version = ">= 1.3.0"
 }
 
