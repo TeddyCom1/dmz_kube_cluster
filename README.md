@@ -20,7 +20,16 @@ Terraform root module that deploys a 3-control-plane + 2-worker Talos Kubernetes
 
 ## Setup
 
-### 1. Proxmox credentials
+### 1. Gitea backend credentials
+
+Terraform state is stored in a Gitea HTTP backend. Export these before running `terraform init`:
+
+```bash
+export TF_HTTP_USERNAME="<Gitea username>"
+export TF_HTTP_PASSWORD="<gitea-personal-access-token>"  # requires package read+write scope
+```
+
+### 2. Proxmox credentials
 
 Set these environment variables before running Terraform:
 
