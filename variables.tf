@@ -1,0 +1,31 @@
+variable "proxmox_api_url" {
+  description = "Proxmox API URL, e.g. https://pve.local:8006/api2/json."
+  type        = string
+}
+
+variable "cluster_name" {
+  description = "Talos cluster name."
+  type        = string
+  default     = "dmz"
+}
+
+variable "cluster_endpoint" {
+  description = "Talos cluster API endpoint, e.g. https://192.168.10.10:6443."
+  type        = string
+}
+
+variable "talos_version" {
+  description = "Talos version, e.g. v1.9.5."
+  type        = string
+}
+
+variable "talos_iso_image" {
+  description = "Proxmox path to the Talos ISO, e.g. local:iso/talos-v1.9.5-amd64.iso."
+  type        = string
+}
+
+variable "vlan_id" {
+  description = "VLAN tag for all cluster nodes. -1 for untagged."
+  type        = number
+  default     = -1
+}
