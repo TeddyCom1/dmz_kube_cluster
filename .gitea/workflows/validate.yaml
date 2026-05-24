@@ -29,4 +29,8 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: terraform plan
+        env:
+          PM_API_TOKEN_ID: ${{ secrets.PM_API_TOKEN_ID }}
+          PM_API_TOKEN_SECERT: ${{ secrets.PM_API_TOKEN_SECRET }}
+      
 
