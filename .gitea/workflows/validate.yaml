@@ -10,7 +10,9 @@ jobs:
   Terraform-Plan:
     runs-on: ubuntu-latest
     env:
+      TF_HTTP_USERNAME: ${{ gitea.actor }}
       TF_HTTP_PASSWORD: ${{ secrets.GITEA_TOKEN }}
+
     steps:
       - uses: actions/checkout@v6
       - uses: hashicorp/setup-terraform@v4
