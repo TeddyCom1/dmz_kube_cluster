@@ -10,9 +10,9 @@ terraform {
     }
   }
   backend "http" {
-    address        = "https://git.home.mongernet.com/api/packages/Teddycom1/terraform/state/dmz-kube-cluster"
-    lock_address   = "https://git.home.mongernet.com/api/packages/Teddycom1/terraform/state/dmz-kube-cluster/lock"
-    unlock_address = "https://git.home.mongernet.com/api/packages/Teddycom1/terraform/state/dmz-kube-cluster/lock"
+    address        = "https://git.home.mongernet.com/api/packages/ci-bot/terraform/state/dmz-kube-cluster"
+    lock_address   = "https://git.home.mongernet.com/api/packages/ci-bot/terraform/state/dmz-kube-cluster/lock"
+    unlock_address = "https://git.home.mongernet.com/api/packages/ci-bot/terraform/state/dmz-kube-cluster/lock"
     lock_method    = "POST"
     unlock_method  = "DELETE"
   }
