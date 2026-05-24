@@ -1,0 +1,30 @@
+name: DMZ Kube Cluster Deploy
+run-name: ${{ gitea.actor }} to deploy a cluster in the DMZ subnet
+on: [workflow_dispatch]
+
+jobs:
+  Terraform-Plan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@4
+      
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.5
+      
+      - name: Terraform Init
+        id: init
+        run: terraform init
+        env:
+          TF_HTTP_PASSWORD: ${{ secrets.GITEA_TOKEN }}
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan
+      
+      - name: Terraform Apply
+        id: apply
+        run: terraform 
+
