@@ -2,11 +2,11 @@ terraform {
   required_providers {
     proxmox = {
       source  = "telmate/proxmox"
-      version = "~> 3.0"
+      version = "~> 3.0.0"
     }
     talos = {
       source  = "siderolabs/talos"
-      version = "~> 0.7"
+      version = "~> 0.7.0"
     }
   }
   backend "http" {
