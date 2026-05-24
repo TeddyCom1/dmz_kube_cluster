@@ -1,6 +1,6 @@
 # dmz_kube_cluster
 
-Terraform root module that deploys a 3-control-plane + 2-worker Talos Kubernetes cluster in the DMZ network using the [`kube-talos-node-module`](../kube-talos-node-module).
+Terraform root module that deploys a 3-control-plane + 2-worker Talos Kubernetes cluster in the DMZ network using the [`kube-talos-node-module`](https://github.com/TeddyCom1/talos-proxmox-module).
 
 ## What gets created
 
