@@ -33,16 +33,15 @@ resource "talos_machine_secrets" "this" {}
 module "controlplane" {
   source = "git::https://github.com/TeddyCom1/talos-proxmox-module.git"
 
-  node_type        = "controlplane"
-  cluster_name     = var.cluster_name
-  cluster_endpoint = var.cluster_endpoint
-  machine_secrets  = talos_machine_secrets.this
-  talos_version    = var.talos_version
-  iso_image        = var.talos_iso_image
-  vlan_id          = var.vlan_id
+  node_type       = "controlplane"
+  cluster_name    = var.cluster_name
+  machine_secrets = talos_machine_secrets.this
+  talos_version   = var.talos_version
+  iso_image       = var.talos_iso_image
+  vlan_id         = var.vlan_id
 
   nodes = {
-    cp0 = { name = "dmz-cp-0", target_node = "pve0", ip_address = "192.168.10.10" }
+    cp0 = { name = "dmz-cp-0", target_node = "pve0" }
   }
 
   cores     = 2
@@ -65,14 +64,14 @@ module "workers" {
 
   node_type        = "worker"
   cluster_name     = var.cluster_name
-  cluster_endpoint = var.cluster_endpoint
+  cluster_endpoint = "https://${module.controlplane.node_ips["cp0"]}:6443"
   machine_secrets  = talos_machine_secrets.this
   talos_version    = var.talos_version
   iso_image        = var.talos_iso_image
   vlan_id          = var.vlan_id
 
   nodes = {
-    w0 = { name = "dmz-worker-0", target_node = "pve0", ip_address = "192.168.10.20" }
+    w0 = { name = "dmz-worker-0", target_node = "pve0" }
   }
 
   cores     = 2

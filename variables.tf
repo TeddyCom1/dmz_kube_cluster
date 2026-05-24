@@ -9,11 +9,6 @@ variable "cluster_name" {
   default     = "dmz"
 }
 
-variable "cluster_endpoint" {
-  description = "Talos cluster API endpoint, e.g. https://192.168.10.10:6443."
-  type        = string
-}
-
 variable "talos_version" {
   description = "Talos version, e.g. v1.9.5."
   type        = string
