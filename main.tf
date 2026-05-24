@@ -31,7 +31,7 @@ resource "talos_machine_secrets" "this" {}
 # ─── Control plane nodes ──────────────────────────────────────────────────────
 
 module "controlplane" {
-  source = "https://github.com/TeddyCom1/talos-proxmox-module.git"
+  source = "git::https://github.com/TeddyCom1/talos-proxmox-module.git"
 
   node_type        = "controlplane"
   cluster_name     = var.cluster_name
@@ -61,7 +61,7 @@ resource "talos_bootstrap" "this" {
 # ─── Worker nodes ─────────────────────────────────────────────────────────────
 
 module "workers" {
-  source = "https://github.com/TeddyCom1/talos-proxmox-module.git"
+  source = "git::https://github.com/TeddyCom1/talos-proxmox-module.git"
 
   node_type        = "worker"
   cluster_name     = var.cluster_name
