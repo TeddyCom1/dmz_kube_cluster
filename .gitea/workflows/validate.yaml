@@ -9,6 +9,8 @@ on:
 jobs:
   Terraform-Plan:
     runs-on: ubuntu-latest
+    env:
+      TF_HTTP_PASSWORD: ${{ secrets.GITEA_TOKEN }}
     steps:
       - uses: actions/checkout@v6
       - uses: hashicorp/setup-terraform@v4
@@ -21,14 +23,8 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init
-        env:
-          TF_HTTP_PASSWORD: ${{ secrets.GITEA_TOKEN }}
 
       - name: Terraform Plan
         id: plan
         run: terraform plan
-      
-      - name: Terraform Apply
-        id: apply
-        run: terraform 
 
