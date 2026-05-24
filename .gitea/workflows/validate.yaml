@@ -3,7 +3,7 @@ name: Set up Terraform
 on:
   push:
     branches:
-      - main
+      - test
   pull_request:
 
 jobs:
