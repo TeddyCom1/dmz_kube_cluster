@@ -14,6 +14,11 @@ variable "talos_version" {
   type        = string
 }
 
+variable "talos_image_factory_id" {
+  description = "Talos image factory id, e.g. ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515"
+  type        = string
+}
+
 variable "vlan_id" {
   description = "VLAN tag for all cluster nodes. -1 for untagged."
   type        = number
