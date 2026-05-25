@@ -10,12 +10,7 @@ variable "cluster_name" {
 }
 
 variable "talos_version" {
-  description = "Talos version, e.g. v1.9.5."
-  type        = string
-}
-
-variable "talos_iso_image" {
-  description = "Proxmox path to the Talos ISO, e.g. local:iso/talos-v1.9.5-amd64.iso."
+  description = "Talos version, e.g. 1.9.5."
   type        = string
 }
 

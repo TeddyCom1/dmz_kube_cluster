@@ -39,7 +39,7 @@ module "controlplane" {
   cluster_name    = var.cluster_name
   machine_secrets = talos_machine_secrets.this
   talos_version   = var.talos_version
-  iso_image       = var.talos_iso_image
+  image           = proxmox_virtual_environment_download_file.talos_image.id
   vlan_id         = var.vlan_id
 
   nodes = {
@@ -69,7 +69,7 @@ module "workers" {
   cluster_endpoint = "https://${module.controlplane.node_ips["cp0"]}:6443"
   machine_secrets  = talos_machine_secrets.this
   talos_version    = var.talos_version
-  iso_image        = var.talos_iso_image
+  image           = proxmox_virtual_environment_download_file.talos_image.id
   vlan_id          = var.vlan_id
 
   nodes = {
@@ -82,6 +82,17 @@ module "workers" {
 
   depends_on = [talos_machine_bootstrap.this]
 }
+
+resource "proxmox_virtual_environment_download_file" "talos_image" {
+  content_type            = "iso"
+  datastore_id            = "local"
+  node_name               = var.cluster_name
+  url                     = "https://factory.talos.dev/image/${var.talos_image_factory_id}/v${var.talos_version}/nocloud-amd64.raw.xz"
+  decompression_algorithm = "zst"
+  file_name               = "talos-v${var.talos_version}-nocloud-amd64.img"
+  overwrite               = false
+}
+
 
 # ─── Outputs ──────────────────────────────────────────────────────────────────
 
