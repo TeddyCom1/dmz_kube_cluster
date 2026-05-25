@@ -49,6 +49,8 @@ module "controlplane" {
   cores     = 2
   memory    = 4096
   disk_size = 20
+
+  depends_on = [ proxmox_download_file.talos_image ]
 }
 
 # Bootstrap the cluster on the first control plane node after configs are applied.
@@ -80,7 +82,7 @@ module "workers" {
   memory    = 4096
   disk_size = 20
 
-  depends_on = [talos_machine_bootstrap.this]
+  depends_on = [talos_machine_bootstrap.this, proxmox_download_file.talos_image]
 }
 
 resource "proxmox_download_file" "talos_image" {
