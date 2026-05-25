@@ -1,8 +1,8 @@
 terraform {
   required_providers {
     proxmox = {
-      source  = "telmate/proxmox"
-      version = "~> 3.0, 3.0.2-rc07"
+      source  = "bpg/proxmox"
+      version = ">= 0.66.0"
     }
     talos = {
       source  = "siderolabs/talos"
@@ -20,13 +20,10 @@ terraform {
 }
 
 provider "proxmox" {
-  pm_api_url      = var.proxmox_api_url
-  pm_log_enable   = true
-  pm_log_levels   = {
-    _default    = "debug"
-    _capturelog = ""
-  }
-  # Credentials via PM_API_TOKEN_ID and PM_API_TOKEN_SECRET env vars.
+  endpoint = var.proxmox_api_url
+  insecure = true
+  # Credentials via PROXMOX_VE_API_TOKEN env var.
+  # Format: "user@realm!tokenid=<uuid-secret>"
 }
 
 # ─── Cluster secrets (generated once, shared across both module calls) ────────

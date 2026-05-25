@@ -33,16 +33,17 @@ export TF_HTTP_PASSWORD="<gitea-personal-access-token>"  # requires package read
 ### 2. Proxmox credentials
 
 ```bash
-export PROXMOX_API_TOKEN_ID="terraform@pam!mytoken"
-export PROXMOX_API_TOKEN_SECRET="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+export PROXMOX_VE_API_TOKEN="terraform@pam!mytoken=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 ```
+
+The token value combines the token ID and secret in `user@realm!tokenid=secret` format.
 
 ### 3. Configure variables
 
 Edit `vars/prod.tfvars` (or create a `terraform.tfvars`):
 
 ```hcl
-proxmox_api_url = "https://pve.local:8006/api2/json"
+proxmox_api_url = "https://pve.local:8006"
 talos_version   = "v1.9.5"
 talos_iso_image = "local:iso/talos-v1.9.5-amd64.iso"  # must have qemu-guest-agent extension
 cluster_name    = "dmz"
@@ -91,7 +92,7 @@ kubectl get nodes
 
 | Name | Description | Default |
 |---|---|---|
-| `proxmox_api_url` | Proxmox API URL, e.g. `https://pve.local:8006/api2/json`. | — |
+| `proxmox_api_url` | Proxmox API base URL, e.g. `https://pve.local:8006`. | — |
 | `talos_version` | Talos version, e.g. `v1.9.5`. | — |
 | `talos_iso_image` | Proxmox path to the Talos ISO (must include `qemu-guest-agent` extension). | — |
 | `cluster_name` | Talos cluster name. | `"dmz"` |

@@ -1,5 +1,5 @@
 variable "proxmox_api_url" {
-  description = "Proxmox API URL, e.g. https://pve.local:8006/api2/json."
+  description = "Proxmox API base URL, e.g. https://pve.local:8006."
   type        = string
 }
 
