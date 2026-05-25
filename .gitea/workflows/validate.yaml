@@ -17,10 +17,6 @@ jobs:
       TF_HTTP_PASSWORD: ${{ secrets.CI_BOT_TOKEN }}
       PM_API_TOKEN_ID: ${{ secrets.PM_API_TOKEN_ID }}
       PM_API_TOKEN_SECRET: ${{ secrets.PM_API_TOKEN_SECRET }}
-      TF_VAR_proxmox_api_url: ${{ secrets.TF_VAR_PROXMOX_API_URL }}
-      TF_VAR_cluster_endpoint: ${{ secrets.TF_VAR_CLUSTER_ENDPOINT }}
-      TF_VAR_talos_version: ${{ secrets.TF_VAR_TALOS_VERSION }}
-      TF_VAR_talos_iso_image: ${{ secrets.TF_VAR_TALOS_ISO_IMAGE }}
 
     steps:
       - uses: actions/checkout@v4
@@ -37,4 +33,4 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan
+        run: terraform plan -var-file=vars/prod.tfvars
