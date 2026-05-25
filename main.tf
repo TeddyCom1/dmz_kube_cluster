@@ -50,7 +50,7 @@ module "controlplane" {
 }
 
 # Bootstrap the cluster on the first control plane node after configs are applied.
-resource "talos_bootstrap" "this" {
+resource "talos_machine_bootstrap" "this" {
   client_configuration = talos_machine_secrets.this.client_configuration
   node                 = module.controlplane.node_ips["cp0"]
 
