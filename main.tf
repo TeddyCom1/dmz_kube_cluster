@@ -41,7 +41,7 @@ module "controlplane" {
   vlan_id         = var.vlan_id
 
   nodes = {
-    cp0 = { name = "dmz-cp-0", target_node = "pve0" }
+    cp0 = { name = "dmz-cp-0", target_node = "Io" }
   }
 
   cores     = 2
@@ -71,7 +71,7 @@ module "workers" {
   vlan_id          = var.vlan_id
 
   nodes = {
-    w0 = { name = "dmz-worker-0", target_node = "pve0" }
+    w0 = { name = "dmz-worker-0", target_node = "Io" }
   }
 
   cores     = 2
