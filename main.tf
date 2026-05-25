@@ -28,7 +28,6 @@ provider "proxmox" {
   # SSH is required by the bpg/proxmox provider to import disk images (file_id).
   # Without this block, disk imports silently fail and VMs are created with no disk.
   ssh {
-    agent = true
     node {
       name    = var.proxmox_node_name
       address = var.proxmox_url
