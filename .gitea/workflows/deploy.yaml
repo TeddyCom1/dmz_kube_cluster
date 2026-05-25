@@ -30,8 +30,8 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan -out=tfplan
+        run: terraform plan -out=tfplan -var-file=vars/prod.tfvars
 
       - name: Terraform Apply
         id: apply
-        run: terraform apply -auto-approve tfplan
+        run: terraform apply -auto-approve tfplan -var-file=vars/prod.tfvars
