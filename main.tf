@@ -20,7 +20,7 @@ terraform {
 }
 
 provider "proxmox" {
-  endpoint = "https://${var.proxmox_api_url}"
+  endpoint = "https://${var.proxmox_url}"
   insecure = true
   # Credentials via PROXMOX_VE_API_TOKEN env var.
   # Format: "user@realm!tokenid=<uuid-secret>"
@@ -31,7 +31,7 @@ provider "proxmox" {
     agent = true
     node {
       name    = var.proxmox_node_name
-      address = var.proxmox_api_url
+      address = var.proxmox_url
       port    = 2202
     }
   }
@@ -93,7 +93,7 @@ module "workers" {
   memory    = 4096
   disk_size = 20
 
-  depends_on = [talos_machine_bootstrap.this, proxmox_download_file.talos_image]
+  depends_on = [ talos_machine_bootstrap.this, proxmox_download_file.talos_image ]
 }
 
 resource "proxmox_download_file" "talos_image" {
