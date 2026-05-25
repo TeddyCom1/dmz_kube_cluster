@@ -39,7 +39,7 @@ module "controlplane" {
   cluster_name    = var.cluster_name
   machine_secrets = talos_machine_secrets.this
   talos_version   = var.talos_version
-  image           = proxmox_download_file.talos_image.id
+  image_id        = proxmox_download_file.talos_image.id
   vlan_id         = var.vlan_id
 
   nodes = {
@@ -71,7 +71,7 @@ module "workers" {
   cluster_endpoint = "https://${module.controlplane.node_ips["cp0"]}:6443"
   machine_secrets  = talos_machine_secrets.this
   talos_version    = var.talos_version
-  image            = proxmox_download_file.talos_image.id
+  image_id         = proxmox_download_file.talos_image.id
   vlan_id          = var.vlan_id
 
   nodes = {
