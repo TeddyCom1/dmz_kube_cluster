@@ -1,4 +1,4 @@
-proxmox_api_url = "https://proxmox.home.mongernet.com"
+proxmox_api_url        = "https://proxmox.home.mongernet.com"
 cluster_name           = "dmz"
 vlan_id                = 40
 talos_version          = "1.13.2"

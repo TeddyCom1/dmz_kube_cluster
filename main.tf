@@ -69,7 +69,7 @@ module "workers" {
   cluster_endpoint = "https://${module.controlplane.node_ips["cp0"]}:6443"
   machine_secrets  = talos_machine_secrets.this
   talos_version    = var.talos_version
-  image           = proxmox_virtual_environment_download_file.talos_image.id
+  image            = proxmox_virtual_environment_download_file.talos_image.id
   vlan_id          = var.vlan_id
 
   nodes = {
@@ -83,7 +83,7 @@ module "workers" {
   depends_on = [talos_machine_bootstrap.this]
 }
 
-resource "proxmox_virtual_environment_download_file" "talos_image" {
+resource "proxmox_download_file" "talos_image" {
   content_type            = "iso"
   datastore_id            = "local"
   node_name               = var.cluster_name
