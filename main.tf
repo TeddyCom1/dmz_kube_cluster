@@ -78,7 +78,7 @@ module "workers" {
   memory    = 4096
   disk_size = 20
 
-  depends_on = [talos_bootstrap.this]
+  depends_on = [talos_machine_bootstrap.this]
 }
 
 # ─── Outputs ──────────────────────────────────────────────────────────────────
@@ -87,7 +87,7 @@ resource "talos_cluster_kubeconfig" "this" {
   client_configuration = talos_machine_secrets.this.client_configuration
   node                 = module.controlplane.node_ips["cp0"]
 
-  depends_on = [talos_bootstrap.this]
+  depends_on = [talos_machine_bootstrap.this]
 }
 
 output "kubeconfig" {
