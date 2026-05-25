@@ -20,10 +20,21 @@ terraform {
 }
 
 provider "proxmox" {
-  endpoint = var.proxmox_api_url
+  endpoint = "https://${var.proxmox_api_url}"
   insecure = true
   # Credentials via PROXMOX_VE_API_TOKEN env var.
   # Format: "user@realm!tokenid=<uuid-secret>"
+
+  # SSH is required by the bpg/proxmox provider to import disk images (file_id).
+  # Without this block, disk imports silently fail and VMs are created with no disk.
+  ssh {
+    agent = true
+    node {
+      name    = var.proxmox_node_name
+      address = var.proxmox_api_url
+      port    = 2202
+    }
+  }
 }
 
 # ─── Cluster secrets (generated once, shared across both module calls) ────────
