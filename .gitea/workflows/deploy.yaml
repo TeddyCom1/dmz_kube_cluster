@@ -34,4 +34,4 @@ jobs:
 
       - name: Terraform Apply
         id: apply
-        run: terraform apply -var-file=vars/prod.tfvars -auto-approve tfplan 
+        run: terraform apply -auto-approve tfplan 
