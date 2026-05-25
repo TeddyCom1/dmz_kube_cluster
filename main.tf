@@ -20,8 +20,13 @@ terraform {
 }
 
 provider "proxmox" {
-  pm_api_url = var.proxmox_api_url
-  # Credentials via PROXMOX_API_TOKEN_ID and PROXMOX_API_TOKEN_SECRET env vars.
+  pm_api_url      = var.proxmox_api_url
+  pm_log_enable   = true
+  pm_log_levels   = {
+    _default    = "debug"
+    _capturelog = ""
+  }
+  # Credentials via PM_API_TOKEN_ID and PM_API_TOKEN_SECRET env vars.
 }
 
 # ─── Cluster secrets (generated once, shared across both module calls) ────────
