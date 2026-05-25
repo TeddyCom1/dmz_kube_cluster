@@ -34,4 +34,4 @@ jobs:
 
       - name: Terraform Apply
         id: apply
-        run: TF_LOG=DEBUG terraform apply -auto-approve tfplan 2>&1
+        run: terraform apply -auto-approve tfplan 2>&1
