@@ -24,3 +24,8 @@ variable "vlan_id" {
   type        = number
   default     = -1
 }
+
+variable "proxmox_node_name" {
+  description = "The name of the proxmox node which things are to be deployed to"
+  type        = string
+}

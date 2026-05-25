@@ -43,7 +43,7 @@ module "controlplane" {
   vlan_id         = var.vlan_id
 
   nodes = {
-    cp0 = { name = "dmz-cp-0", target_node = "Io" }
+    cp0 = { name = "dmz-cp-0", target_node = var.proxmox_node_name }
   }
 
   cores     = 2
@@ -73,7 +73,7 @@ module "workers" {
   vlan_id          = var.vlan_id
 
   nodes = {
-    w0 = { name = "dmz-worker-0", target_node = "Io" }
+    w0 = { name = "dmz-worker-0", target_node = var.proxmox_node_name }
   }
 
   cores     = 2
@@ -86,6 +86,7 @@ module "workers" {
 resource "proxmox_download_file" "talos_image" {
   content_type            = "iso"
   datastore_id            = "local"
+  node_name               = var.proxmox_node_name
   url                     = "https://factory.talos.dev/image/${var.talos_image_factory_id}/v${var.talos_version}/nocloud-amd64.raw.xz"
   decompression_algorithm = "zst"
   file_name               = "talos-v${var.talos_version}-nocloud-amd64.img"
